@@ -6,17 +6,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingCart {
-    Map<Integer, Product> productMap;
+    Map<Integer, CartItem> productMap;
     public ShoppingCart() {
         productMap = new HashMap<>();
     }
 
-    public void add(Product product) {
-        System.out.println(product.getProductId());
-        productMap.put(product.getProductId(), product);
+    public void add(CartItem product) {
+        if(productMap.containsKey(product.getProduct().getProductId())){
+            CartItem item = productMap.get(product.getProduct().getProductId());
+            System.out.println(item.getQuantity());
+            System.out.println(product.getQuantity());
+            item.setQuantity(item.getQuantity() + product.getQuantity());
+        } else {
+            productMap.put(product.getProduct().getProductId(), product);
+        }
+
     }
 
-    public Collection<Product> getItems() {
+    public Collection<CartItem> getItems() {
         return productMap.values();
     }
 

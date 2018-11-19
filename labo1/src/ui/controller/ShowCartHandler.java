@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.CartItem;
 import domain.model.Product;
 import domain.model.ShopService;
 import domain.model.ShoppingCart;
@@ -20,10 +21,18 @@ public class ShowCartHandler extends RequestHandler {
 
     @Override
     String handle(HttpServletRequest request, HttpServletResponse response) {
+        double total = 0;
         HttpSession session = request.getSession();
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
-        Collection<Product> producten = cart.getItems();
-        request.setAttribute("shopCart", producten);
+        if (session.getAttribute("shopCart") != null) {
+            ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
+            Collection<CartItem> producten = cart.getItems();
+            request.setAttribute("shopCart", producten);
+
+            for(CartItem product : producten) {
+                total += product.getPrice();
+            }
+        }
+        session.setAttribute("total", total);
         return "showCart.jsp";
     }
 }

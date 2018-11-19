@@ -23,7 +23,7 @@
         <h2>
             Product Overview
         </h2>
-        <p><a href="Controller?action=ShowCart&shopCart">Show Cart</a></p>
+        <p><a href="Controller?action=ShowCart">Show Cart</a></p>
     </header>
     <main>
     <table>
@@ -38,7 +38,10 @@
                 <td>${product.name}</td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
-                <td><a href="Controller?action=AddToShoppingCart&id=${product.productId}">Add to cart</a></td>
+                <form action="Controller?action=AddToShoppingCart&id=${product.productId}" method="post">
+                    <td><input type="number" value="1" name="quantity"></td>
+                    <td><input type="submit" value="Add to cart"></td>
+                </form>
             </tr>
         </c:forEach>
 

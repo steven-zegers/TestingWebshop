@@ -30,17 +30,23 @@
                 <th>Description</th>
                 <th>Price</th>
             </tr>
-            <c:forEach var="product" items="${shopCart}">
-                <tr>
-                    <td>${product.name}</td>
-                    <td>${product.description}</td>
-                    <td>${product.price}</td>
-                </tr>
-            </c:forEach>
-
-
+            <c:if test="${shopCart!=null}">
+                <c:forEach var="cartItem" items="${shopCart}">
+                    <tr>
+                        <td>${cartItem.product.name}</td>
+                        <td>${cartItem.product.price}</td>
+                        <td>${cartItem.quantity}</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+            <p>The total price is: ${total}</p>
             <caption>Product Overview</caption>
         </table>
+        <form method="post" action="Controller?action=Order" novalidate="novalidate">
+        <!-- novalidate in order to be able to run tests correctly -->
+        <p><input type="submit" id="Order" value="Place order"></p>
+
+    </form>
     </main>
     <footer>
         &copy; Webontwikkeling 3, UC Leuven-Limburg

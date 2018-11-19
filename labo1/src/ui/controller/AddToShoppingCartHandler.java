@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.CartItem;
 import domain.model.Product;
 import domain.model.ShopService;
 import domain.model.ShoppingCart;
@@ -22,11 +23,12 @@ public class AddToShoppingCartHandler extends RequestHandler {
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(3600);
         Product p;
-        System.out.println(Integer.parseInt(request.getParameter("id")));
+        CartItem cartItem = null;
+
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            System.out.println(getShopService().getPerson("bart"));
             p = getShopService().getProduct(id);
+            cartItem = new CartItem(p, Integer.parseInt(request.getParameter("quantity")));
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ID should be an integer");
         }
@@ -35,7 +37,7 @@ public class AddToShoppingCartHandler extends RequestHandler {
             session.setAttribute("shopCart", cart);
         }
         ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
-        cart.add(p);
+        cart.add(cartItem);
         request.setAttribute("producten", getShopService().getProducts());
         return "productOverview.jsp";
     }
