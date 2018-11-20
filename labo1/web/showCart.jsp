@@ -24,20 +24,33 @@
         </h2>
     </header>
     <main>
+        <c:if test="${errors != null}">
+            <div class="alert-danger">
+                <ul>
+                    <c:forEach items="${errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+
+                </ul>
+            </div>
+        </c:if>
         <table>
             <tr>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Price</th>
+                <th>Amount</th>
             </tr>
             <c:if test="${shopCart!=null}">
-                <c:forEach var="cartItem" items="${shopCart}">
-                    <tr>
-                        <td>${cartItem.product.name}</td>
-                        <td>${cartItem.product.price}</td>
-                        <td>${cartItem.quantity}</td>
-                    </tr>
-                </c:forEach>
+                <c:if test="${not empty shopCart}">
+                    <c:forEach var="cartItem" items="${shopCart}">
+                        <tr>
+                            <td>${cartItem.product.name}</td>
+                            <td>${cartItem.product.price}</td>
+                            <td>${cartItem.quantity}</td>
+                            <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.productId}">Delete from cart</a></td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
             </c:if>
             <p>The total price is: ${total}</p>
             <caption>Product Overview</caption>

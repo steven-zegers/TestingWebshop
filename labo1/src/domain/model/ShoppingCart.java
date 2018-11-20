@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingCart {
-    Map<Integer, CartItem> productMap;
+    public Map<Integer, CartItem> productMap;
     public ShoppingCart() {
         productMap = new HashMap<>();
     }
@@ -28,7 +28,17 @@ public class ShoppingCart {
     }
 
     public void delete(int id) {
+        System.out.println("Trying to delete item: " + id);
+        if (!productMap.containsKey(id)) {
+            throw new DomainException("Dit item zit niet in uw shopping cart");
+        }
+        for(CartItem product: getItems()) {
+            System.out.println(product.getProduct().getProductId());
+        }
         productMap.remove(id);
+        for(CartItem product : getItems()) {
+            System.out.println(product.getProduct().getProductId());
+        }
     }
 
     public void delete(Product product) {
