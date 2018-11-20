@@ -47,6 +47,10 @@
                             <td>${cartItem.product.name}</td>
                             <td>${cartItem.product.price}</td>
                             <td>${cartItem.quantity}</td>
+                            <form action="Controller?action=ChangeQuantity&id=${cartItem.product.productId}" method="post">
+                                <td><input type="number" value="1" name="quantity"></td>
+                                <td><input type="submit" value="Change quantity"></td>
+                            </form>
                             <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.productId}">Delete from cart</a></td>
                         </tr>
                     </c:forEach>
@@ -55,11 +59,14 @@
             <p>The total price is: ${total}</p>
             <caption>Product Overview</caption>
         </table>
-        <form method="post" action="Controller?action=Order" novalidate="novalidate">
-        <!-- novalidate in order to be able to run tests correctly -->
-        <p><input type="submit" id="Order" value="Place order"></p>
-
-    </form>
+        <c:if test="${shopCart!=null}">
+            <c:if test="${not empty shopCart}">
+                <form method="post" action="Controller?action=Order" novalidate="novalidate">
+                <!-- novalidate in order to be able to run tests correctly -->
+                    <p><input type="submit" id="Order" value="Place order"></p>
+                </form>
+            </c:if>
+        </c:if>
     </main>
     <footer>
         &copy; Webontwikkeling 3, UC Leuven-Limburg

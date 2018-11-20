@@ -19,7 +19,7 @@ public class DeleteFromCartHandler extends RequestHandler {
 
     }
     public DeleteFromCartHandler(ShopService service) {
-
+        super(service);
     }
 
     @Override
@@ -37,9 +37,14 @@ public class DeleteFromCartHandler extends RequestHandler {
             }
             session.setAttribute("shopCart", cart);
             request.setAttribute("shopCart", cart.getItems());
+            request.setAttribute("total", cart.getTotalPrice());
         } else {
             errors.add("U heeft geen shopping cart dus kan ook niets verwijderen");
         }
+        if (errors.size() > 0) {
+            request.setAttribute("errors", errors);
+        }
+
         return "showCart.jsp";
     }
 }

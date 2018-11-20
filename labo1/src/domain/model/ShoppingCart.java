@@ -44,4 +44,16 @@ public class ShoppingCart {
     public void delete(Product product) {
         productMap.remove(product);
     }
+
+    public double getTotalPrice() {
+        double total = 0;
+        for (CartItem item : getItems()) {
+            total += item.getPrice();
+        }
+        return total;
+    }
+
+    public void pay() {
+        productMap.clear();
+    }
 }
