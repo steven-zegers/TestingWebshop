@@ -13,16 +13,19 @@ public class Person {
 	private String password;
 	private String firstName;
 	private String lastName;
+	private ShoppingCart shoppingCart;
+	public Person() {
 
+	}
 	public Person(String userid, String email, String password, String firstName, String lastName) {
 		setUserid(userid);
 		setEmail(email);
-		setHashedPassword(password);
+		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
 	}
 
-	private void setHashedPassword(String password) {
+	public void setHashedPassword(String password) {
 		this.password = password;
 	}
 
@@ -43,10 +46,6 @@ public class Person {
 
 	}
 
-
-	public Person() {
-	}
-
 	public String getUserid() {
 		return userid;
 	}
@@ -62,9 +61,9 @@ public class Person {
 		if(email.isEmpty()){
 			throw new IllegalArgumentException("No email given");
 		}
-		String USERID_PATTERN = 
+		String USERID_PATTERN =
 				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern p = Pattern.compile(USERID_PATTERN);
 		Matcher m = p.matcher(email);
 		if (!m.matches()) {
@@ -73,16 +72,16 @@ public class Person {
 		this.email = email;
 	}
 
-	
-	
+
+
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public boolean isCorrectPassword(String password) {
 		if(password.isEmpty()){
 			throw new IllegalArgumentException("No password given");
@@ -122,9 +121,17 @@ public class Person {
 		}
 		this.lastName = lastName;
 	}
-	
+
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	public ShoppingCart getShoppingCart() {
+		return this.shoppingCart;
+	}
+
 	@Override
 	public String toString(){
 		return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail();
-	}	
+	}
 }

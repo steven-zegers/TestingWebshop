@@ -8,13 +8,22 @@ import java.util.Properties;
 public class ShopService {
     private PersonDb personDb;
     private ProductDb productDb;
+
+    public ShopService() {
+
+    }
     public ShopService(Properties properties) {
         personDb = new PersonDbOnServer(properties);
         productDb = new ProductDbOnServer(properties);
     }
 
     public Person getPerson(String personId) {
-        return getPersonDb().get(personId);
+        try {
+            Person p = getPersonDb().get(personId);
+            return p;
+        } catch(DbException e) {
+            return null;
+        }
     }
 
     public List<Person> getPersons() {
@@ -54,5 +63,16 @@ public class ShopService {
     }
     public void updateProduct(Product product) {
         getProductDb().update(product);
+    }
+
+    public Person getUserIfAuthenticated(String userid, String password) {
+        try {
+            Person p = getPersonDb().get(userid);
+            if(p.isCorrectPassword(password)) {
+                return p;
+            } else return null;
+        } catch (DbException e) {
+            return null;
+        }
     }
 }

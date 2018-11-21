@@ -39,7 +39,12 @@ public class PersonDbOnServer implements PersonDb {
             String userid = result.getString("userid");
             String email = result.getString("email");
             String password = result.getString("password");
-            Person p = new Person(userid, email, password, voornaam, achternaam);
+            Person p = new Person();
+            p.setFirstName(voornaam);
+            p.setLastName(achternaam);
+            p.setUserid(userid);
+            p.setEmail(email);
+            p.setHashedPassword(password);
             return p;
         } catch (SQLException e) {
             throw new DbException("Couldn't find this person " + e.getMessage());
@@ -67,7 +72,12 @@ public class PersonDbOnServer implements PersonDb {
                 String userid = result.getString("userid");
                 String email = result.getString("email");
                 String password = result.getString("password");
-                Person p = new Person(userid, email, password, voornaam, achternaam);
+                Person p = new Person();
+                p.setFirstName(voornaam);
+                p.setLastName(achternaam);
+                p.setUserid(userid);
+                p.setEmail(email);
+                p.setHashedPassword(password);
                 listPersons.add(p);
             }
             return listPersons;

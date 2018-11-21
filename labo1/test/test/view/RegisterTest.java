@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +25,8 @@ public class RegisterTest {
 			// hint: zoek een werkende test op van web 2 ...
 		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get(path+"?action=signUp");
+		driver.get(path+"?action=SignUp");
+		System.out.println(path +"?action=SignUp");
 	}
 	
 	@After
@@ -35,12 +37,13 @@ public class RegisterTest {
 	@Test
 	public void test_Register_AllFieldsFilledInCorrectly_UserIsRegistered() {
 		String useridRandom = generateRandomUseridInOrderToRunTestMoreThanOnce("jakke");
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		submitForm(useridRandom, "Jan", "Janssens", "jan.janssens@hotmail.com" , "1234");
 		
 		String title = driver.getTitle();
 		assertEquals("Overview",title);
 		
-		driver.get(path+"?action=overview");
+		driver.get(path+"?action=PersonOverview");
 		
 		ArrayList<WebElement> listItems=(ArrayList<WebElement>) driver.findElements(By.cssSelector("table tr"));
 		boolean found=false;
@@ -173,7 +176,7 @@ public class RegisterTest {
 		String useridRandom = generateRandomUseridInOrderToRunTestMoreThanOnce("pierke");
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
 		
-		driver.get(path+"?action=signUp");
+		driver.get(path+"?action=SignUp");
 
 		submitForm(useridRandom, "Pieter", "Pieters", "pieter.pieters@hotmail.com", "1234");
 		
