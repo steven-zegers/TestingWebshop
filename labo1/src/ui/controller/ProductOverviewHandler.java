@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.Product;
 import domain.model.ShopService;
 
 import javax.servlet.http.HttpServletRequest;

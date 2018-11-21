@@ -1,9 +1,6 @@
 package ui.controller;
 
-import domain.model.CartItem;
-import domain.model.Product;
-import domain.model.ShopService;
-import domain.model.ShoppingCart;
+import domain.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +20,14 @@ public class ShowCartHandler extends RequestHandler {
     String handle(HttpServletRequest request, HttpServletResponse response) {
         double total = 0;
         HttpSession session = request.getSession();
+        if (session.getAttribute("person") != null) {
+            Person p = (Person) session.getAttribute("person");
+            if (p.getShoppingCart() == null) {
+                ShoppingCart shoppingCart = new ShoppingCart();
+                p.setShoppingCart(shoppingCart);
+            }
+            session.setAttribute("shopCart", p.getShoppingCart());
+        }
         if (session.getAttribute("shopCart") != null) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
             Collection<CartItem> producten = cart.getItems();

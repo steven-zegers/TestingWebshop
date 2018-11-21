@@ -88,7 +88,8 @@ public class ProductDbOnServer implements ProductDb {
         double price = product.getPrice();
 
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("INSERT INTO product (productid,naam,description,price) VALUES (?,?,?,?,?)");
+            System.out.println(productId);
+            statement = connection.prepareStatement("INSERT INTO product (productid,name,description,price) VALUES (?,?,?,?)");
             statement.setInt(1, productId);
             statement.setString(2, naam);
             statement.setString(3, description);
@@ -96,7 +97,7 @@ public class ProductDbOnServer implements ProductDb {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new DbException("Product already exists");
+            throw new DbException(e.getMessage());
         } finally {
             try {
                 statement.close();
@@ -119,7 +120,7 @@ public class ProductDbOnServer implements ProductDb {
             throw new DbException("No valid id given");
         }
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("DELETE from person where userid = ?");
+            statement = connection.prepareStatement("DELETE from product where productid = ?");
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e) {
