@@ -1,9 +1,6 @@
 package ui.controller;
 
-import domain.model.CartItem;
-import domain.model.Product;
-import domain.model.ShopService;
-import domain.model.ShoppingCart;
+import domain.model.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +21,6 @@ public class AddToShoppingCartHandler extends RequestHandler {
         session.setMaxInactiveInterval(3600);
         Product p;
         CartItem cartItem = null;
-
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             p = getShopService().getProduct(id);
@@ -32,9 +28,20 @@ public class AddToShoppingCartHandler extends RequestHandler {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ID should be an integer");
         }
-        if (session.getAttribute("shopCart") == null) {
-            ShoppingCart cart = new ShoppingCart();
-            session.setAttribute("shopCart", cart);
+
+        if(session.getAttribute("person") != null) {
+            Person person = (Person) session.getAttribute("person");
+            if(person.getShoppingCart() == null) {
+                ShoppingCart personShoppingCart = new ShoppingCart();
+                person.setShoppingCart(personShoppingCart);
+            }
+            session.setAttribute("shopCart", person.getShoppingCart());
+        } else {
+            if (session.getAttribute("shopCart") == null) {
+                ShoppingCart cart = new ShoppingCart();
+                session.setAttribute("shopCart", cart);
+            }
+            session.setAttribute("shopCart", session.getAttribute("shopCart"));
         }
         ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
         cart.add(cartItem);
