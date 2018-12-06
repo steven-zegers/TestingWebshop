@@ -26,6 +26,17 @@
         <p><a href="Controller?action=ShowCart">Show Cart</a></p>
     </header>
     <main>
+        <c:if test="${errors != null}">
+            <div class="alert-danger">
+                <ul>
+                    <c:forEach items="${errors}" var="error">
+                        <li>${error}</li>
+                    </c:forEach>
+
+                </ul>
+            </div>
+        </c:if>
+
         <form action="Controller?action=Sort" method="post" novalidate="novalidate">
             <label for="sort">Sort by:</label>
             <select name="sort" id="sort">

@@ -1,22 +1,22 @@
 package domain.model;
 
 public class CartItem {
-    private Product product;
+    private Book book;
     private int quantity;
     public CartItem() {
 
     }
-    public CartItem(Product p, int quantity) {
-        setProduct(p);
+    public CartItem(Book book, int quantity) {
+        setProduct(book);
         setQuantity(quantity);
     }
 
-    public Product getProduct() {
-        return product;
+    public Book getProduct() {
+        return book;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(Book book) {
+        this.book = book;
     }
 
     public int getQuantity() {
@@ -24,10 +24,11 @@ public class CartItem {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity <= 0) throw new IllegalArgumentException("Quantity should be greater than zero");
         this.quantity = quantity;
     }
 
     public double getPrice() {
-        return quantity*product.getPrice();
+        return quantity*book.getPrice();
     }
 }

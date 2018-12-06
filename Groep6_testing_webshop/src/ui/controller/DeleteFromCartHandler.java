@@ -26,12 +26,12 @@ public class DeleteFromCartHandler extends RequestHandler {
     String handle(HttpServletRequest request, HttpServletResponse response) {
         ArrayList<String> errors = new ArrayList<>();
         HttpSession session = request.getSession();
-        int id = Integer.parseInt(request.getParameter("id"));
+        String title = request.getParameter("id");
         if (session.getAttribute("shopCart") != null) {
             ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
             try {
-                System.out.println("Deleting item " + id);
-                cart.delete(id);
+                System.out.println("Deleting item " + title);
+                cart.delete(title);
             } catch (DomainException e) {
                 errors.add(e.getMessage());
             }

@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingCart {
-    public Map<Integer, CartItem> productMap;
+    public Map<String, CartItem> productMap;
 
     public ShoppingCart() {
         productMap = new HashMap<>();
     }
 
     public void add(CartItem product) {
-        if(productMap.containsKey(product.getProduct().getProductId())){
-            CartItem item = productMap.get(product.getProduct().getProductId());
+        if(productMap.containsKey(product.getProduct().getTitle())){
+            CartItem item = productMap.get(product.getProduct().getTitle());
             System.out.println(item.getQuantity());
             System.out.println(product.getQuantity());
             item.setQuantity(item.getQuantity() + product.getQuantity());
         } else {
-            productMap.put(product.getProduct().getProductId(), product);
+            productMap.put(product.getProduct().getTitle(), product);
         }
 
     }
@@ -28,22 +28,22 @@ public class ShoppingCart {
         return productMap.values();
     }
 
-    public void delete(int id) {
-        System.out.println("Trying to delete item: " + id);
-        if (!productMap.containsKey(id)) {
+    public void delete(String title) {
+        System.out.println("Trying to delete item: " + title);
+        if (!productMap.containsKey(title)) {
             throw new DomainException("Dit item zit niet in uw shopping cart");
         }
         for(CartItem product: getItems()) {
-            System.out.println(product.getProduct().getProductId());
+            System.out.println(product.getProduct().getTitle());
         }
-        productMap.remove(id);
+        productMap.remove(title);
         for(CartItem product : getItems()) {
-            System.out.println(product.getProduct().getProductId());
+            System.out.println(product.getProduct().getTitle());
         }
     }
 
-    public void delete(Product product) {
-        productMap.remove(product);
+    public void delete(Book book) {
+        productMap.remove(book);
     }
 
     public double getTotalPrice() {

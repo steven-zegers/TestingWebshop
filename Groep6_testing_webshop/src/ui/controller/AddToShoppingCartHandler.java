@@ -5,6 +5,7 @@ import domain.model.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class AddToShoppingCartHandler extends RequestHandler {
@@ -17,14 +18,24 @@ public class AddToShoppingCartHandler extends RequestHandler {
 
     @Override
     String handle(HttpServletRequest request, HttpServletResponse response) {
+        ArrayList<String> errors = new ArrayList<>();
         HttpSession session = request.getSession();
         session.setMaxInactiveInterval(3600);
-        Product p;
+        Book book;
         CartItem cartItem = null;
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            //p = getShopService().getProduct(id);
-            //cartItem = new CartItem(p, Integer.parseInt(request.getParameter("quantity")));
+            String title = request.getParameter("id");
+            System.out.println(title);
+            book = getShopService().getProduct(title);
+            try {
+                cartItem = new CartItem(book, Integer.parseInt(request.getParameter("quantity")));
+            } catch(IllegalArgumentException e) {
+                errors.add(e.getMessage());
+                request.setAttribute("errors", errors);
+                request.setAttribute("producten", getShopService().getProducts());
+                return "productOverview.jsp";
+            }
+
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ID should be an integer");
         }
@@ -45,6 +56,9 @@ public class AddToShoppingCartHandler extends RequestHandler {
         }
         ShoppingCart cart = (ShoppingCart) session.getAttribute("shopCart");
         cart.add(cartItem);
+        ArrayList<String> message = new ArrayList<>();
+        message.add("Product added to shoppingcart!");
+        request.setAttribute("errors", message);
         request.setAttribute("producten", getShopService().getProducts());
         return "productOverview.jsp";
     }

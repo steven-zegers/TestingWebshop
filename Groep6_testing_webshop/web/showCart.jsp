@@ -44,14 +44,14 @@
                 <c:if test="${not empty shopCart}">
                     <c:forEach var="cartItem" items="${shopCart}">
                         <tr>
-                            <td>${cartItem.product.name}</td>
+                            <td>${cartItem.product.title}</td>
                             <td>${cartItem.product.price}</td>
                             <td>${cartItem.quantity}</td>
-                            <form action="Controller?action=ChangeQuantity&id=${cartItem.product.productId}" method="post">
+                            <form action="Controller?action=ChangeQuantity&id=${cartItem.product.title}" method="post">
                                 <td><input type="number" value="1" name="quantity"></td>
                                 <td><input type="submit" value="Change quantity"></td>
                             </form>
-                            <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.productId}">Delete from cart</a></td>
+                            <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.title}">Delete from cart</a></td>
                         </tr>
                     </c:forEach>
                 </c:if>

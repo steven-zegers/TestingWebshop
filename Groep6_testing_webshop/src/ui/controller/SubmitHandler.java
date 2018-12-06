@@ -6,6 +6,7 @@ import domain.model.ShopService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 public class SubmitHandler extends RequestHandler {
@@ -19,6 +20,7 @@ public class SubmitHandler extends RequestHandler {
 
     @Override
     String handle(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         Person p = new Person();
         ArrayList<String> errors = new ArrayList<>();
         String userId = request.getParameter("userId");
@@ -87,7 +89,9 @@ public class SubmitHandler extends RequestHandler {
 
         if (errors.size() == 0) {
             request.setAttribute("persons", getShopService().getPersons());
-            return "personoverview.jsp";
+            session.setAttribute("person", p);
+            session.setAttribute("login", "yes");
+            return "index.jsp";
         } else {
             request.setAttribute("errors", errors);
             return "signUp.jsp";
