@@ -8,8 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Person {
-	private String userid;
-	private String email;
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -17,9 +15,7 @@ public class Person {
 	public Person() {
 
 	}
-	public Person(String userid, String email, String password, String firstName, String lastName) {
-		setUserid(userid);
-		setEmail(email);
+	public Person(String password, String firstName, String lastName) {
 		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
@@ -44,38 +40,6 @@ public class Person {
 			throw new DomainException("Encryptie wordt niet ondersteund");
 		}
 
-	}
-
-	public String getUserid() {
-		return userid;
-	}
-
-	public void setUserid(String userid) {
-		if(userid.isEmpty()){
-			throw new IllegalArgumentException("No userid given");
-		}
-		this.userid = userid;
-	}
-
-	public void setEmail(String email) {
-		if(email.isEmpty()){
-			throw new IllegalArgumentException("No email given");
-		}
-		String USERID_PATTERN =
-				"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-		Pattern p = Pattern.compile(USERID_PATTERN);
-		Matcher m = p.matcher(email);
-		if (!m.matches()) {
-			throw new IllegalArgumentException("Email not valid");
-		}
-		this.email = email;
-	}
-
-
-
-	public String getEmail() {
-		return email;
 	}
 
 	public String getPassword() {
@@ -132,6 +96,6 @@ public class Person {
 
 	@Override
 	public String toString(){
-		return getFirstName() + " " + getLastName() + ": " + getUserid() + ", " + getEmail();
+		return getFirstName() + " " + getLastName();
 	}
 }

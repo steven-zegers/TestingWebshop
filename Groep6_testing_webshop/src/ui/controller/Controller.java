@@ -78,7 +78,6 @@ public class Controller extends HttpServlet {
 
         if(request.getParameter("action") != null){
             action = request.getParameter("action");
-
         }
         try {
             RequestHandler handler = handlerFactory.getHandler(action, service);
@@ -90,113 +89,5 @@ public class Controller extends HttpServlet {
             System.out.println(e.getMessage());
             throw new ServletException(e.getMessage());
         }
-
-
-        /*String destination = "";
-        switch(action) {
-            case "home":
-                destination = "index.jsp";
-                break;
-            case "overview":
-                destination = "personoverview.jsp";
-                request.setAttribute("persons", persons.getAll());
-                break;
-            case "signUp":
-                destination = "signUp.jsp";
-                break;
-            case "submit":
-                destination = handleSubmit(request, response);
-                break;
-            case "productOverview":
-                destination = "productOverview.jsp";
-                request.setAttribute("producten", productdb.getAll());
-                break;
-            case "checkPassword":
-                destination = "checkPass.jsp";
-                request.setAttribute("person", service.getPerson(request.getParameter("id")));
-                break;
-            case "checkPass":
-                destination = checkPassword(request, response);
-                break;
-        }
-        RequestDispatcher view=request.getRequestDispatcher(destination);
-        view.forward(request, response);*/
     }
-
-    /*protected String checkPassword(HttpServletRequest request, HttpServletResponse response) {
-        Person p;
-        p = service.getPerson(request.getParameter("userid"));
-
-        String s;
-            if (p.isCorrectPassword(request.getParameter("password"))) {
-               s = "Password is ok";
-            } else {
-                s = "Password is niet ok";
-            }
-            request.setAttribute("tekst", s);
-
-        request.setAttribute("person", p);
-        return "checkPass.jsp";
-    }
-
-    protected String handleSubmit(HttpServletRequest request, HttpServletResponse response) {
-        Person p = new Person();
-
-        ArrayList<String> errors = new ArrayList<>();
-        String userid = request.getParameter("userid");
-        String firstname = request.getParameter("firstName");
-        String lastname = request.getParameter("lastName");
-        String mail = request.getParameter("email");
-        String password = request.getParameter("password");
-        try {
-            p.setUserid(userid);
-            request.setAttribute("userid", userid);
-        } catch (IllegalArgumentException e){
-            errors.add(e.getMessage());
-        }
-
-        try {
-            p.setFirstName(firstname);
-            request.setAttribute("firstName", firstname);
-        } catch (IllegalArgumentException e){
-            errors.add(e.getMessage());
-        }
-
-        try {
-            p.setLastName(lastname);
-            request.setAttribute("lastName", lastname);
-        } catch (IllegalArgumentException e){
-            errors.add(e.getMessage());
-        }
-
-        try {
-            p.setPassword(password);
-            request.setAttribute("password", password);
-        } catch(IllegalArgumentException e) {
-            errors.add(e.getMessage());
-        }
-
-        try {
-            p.setEmail(mail);
-            request.setAttribute("email", mail);
-
-        } catch(IllegalArgumentException e) {
-            errors.add(e.getMessage());
-        }
-        if (errors.size() == 0) {
-            try {
-                persons.add(p);
-            } catch (DbException e) {
-                errors.add(e.getMessage());
-            }
-        }
-
-        if (errors.size() == 0) {
-            request.setAttribute("persons", persons.getAll());
-            return "personoverview.jsp";
-        } else {
-            request.setAttribute("errors", errors);
-            return "signUp.jsp";
-        }
-    }*/
 }

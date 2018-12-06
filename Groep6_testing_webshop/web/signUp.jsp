@@ -39,17 +39,24 @@ Sign Up
 
     <form method="post" action="Controller?action=Submit" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
-        <p><label for="userid">User id</label><input type="text" id="userid" name="userid"
-         required value="<c:out value ='${param.userId}'/>"> </p>
         <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
-         required value="${param.firstName}"> </p>
+         required value="<c:out value ='${param.firstName}'/>"> </p>
         <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
          required value="${param.lastName}"> </p>
-        <p><label for="email">Email</label><input type="email" id="email" name="email" required value="<c:out value='${param.email}'/>"></p>
+        <p>
+            <label for="streetName">Street Name</label><input type="text" id="streetName" name="lastName"
+                                                              required value="<c:out value ='${param.streetName}'/>">
+        </p>
+        <p>
+            <label for="streetNumber">Street Number</label><input type="text" id="streetNumber" name="streetNumber"
+                                                                                      required value="<c:out value ='${param.streetNumber}'/>">
+        </p>
+        <p>
+            <label for="city">City</label><input type="text" id="city" name="city" required value="<c:out value ='${param.city}'/>">
+        </p>
         <p><label for="password">Password</label><input type="password" id="password"  name="password"
          required value="${param.password}"> </p>
         <p><input type="submit" id="signUp" value="Sign Up"></p>
-        
     </form>
 </main>
 <footer>

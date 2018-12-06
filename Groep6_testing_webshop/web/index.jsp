@@ -54,23 +54,7 @@
 				</form>
 			</c:otherwise>
 		</c:choose>
-
-		<h3>Would you like to see a quote?</h3>
-		<p>
-		<form method="post" novalidate="novalidate" action="Controller?action=QuotePreference">
-			<input type="radio" id="radio1" name="Quote" value="yes" <c:if test="${quote=='yes'}">checked</c:if>>
-			<label for="radio1">Yes</label>
-			<input type="radio" id="radio2" name="Quote" value="no" <c:if test="${quote=='no'}">checked</c:if>>
-			<label for="radio2">No</label>
-			<input type="submit" id="QuotePreference" value="Submit">
-		</form>
-		</p>
-		<c:if test="${quote=='yes'}">
-			<p>Even a dead fish can go with the flow</p>
-		</c:if>
 	</main>
-
-
 	<footer> &copy; Webontwikkeling 3, UC Leuven-Limburg </footer>
 </div>
 </body>
