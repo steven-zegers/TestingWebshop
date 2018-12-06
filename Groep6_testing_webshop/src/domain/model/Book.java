@@ -27,6 +27,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
+        this.author = author;
         String[] fullName = author.split(" ");
         this.setAuthorFirstName(fullName[0]);
         this.setAuthorLastName(fullName[1]);

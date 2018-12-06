@@ -22,15 +22,6 @@ public class PersonOverviewHandler extends RequestHandler {
     public String handle(HttpServletRequest request, HttpServletResponse response) {
         List<Person> personList = super.getShopService().getPersons();
         Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie: cookies) {
-                if(cookie.getName().equals("sort")) {
-                    String sortMethod = cookie.getValue();
-                    request.setAttribute("sort", sortMethod);
-                    sortList(sortMethod, personList);
-                }
-            }
-        }
         request.setAttribute("persons", personList);
         return "personoverview.jsp";
     }

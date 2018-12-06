@@ -23,8 +23,8 @@ public class AddToShoppingCartHandler extends RequestHandler {
         CartItem cartItem = null;
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            p = getShopService().getProduct(id);
-            cartItem = new CartItem(p, Integer.parseInt(request.getParameter("quantity")));
+            //p = getShopService().getProduct(id);
+            //cartItem = new CartItem(p, Integer.parseInt(request.getParameter("quantity")));
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ID should be an integer");
         }

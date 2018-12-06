@@ -1,19 +1,20 @@
 package domain.db;
 
+import domain.model.Book;
 import domain.model.Product;
 
 import java.util.List;
 
 public interface ProductDb {
-    Product get(int id);
+    Book get(String title);
 
-    List<Product> getAll();
+    List<Book> getAll();
 
-    void add(Product product);
+    void add(Book book);
 
-    void update(Product product);
+    void update(Book book);
 
-    void delete(int id);
+    void delete(String title);
 
     int getNumbeOfProducts();
 }

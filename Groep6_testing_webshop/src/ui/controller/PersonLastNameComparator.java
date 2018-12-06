@@ -1,12 +1,13 @@
 package ui.controller;
 
+import domain.model.Book;
 import domain.model.Person;
 
 import java.util.Comparator;
 
-public class PersonLastNameComparator implements Comparator<Person> {
+public class PersonLastNameComparator implements Comparator<Book> {
     @Override
-    public int compare(Person o1, Person o2) {
-        return o1.getLastName().toLowerCase().compareTo(o2.getLastName().toLowerCase());
+    public int compare(Book b1, Book b2) {
+        return b1.getAuthorLastName().toLowerCase().compareTo(b2.getAuthorLastName().toLowerCase());
     }
 }

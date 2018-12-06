@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.Book;
 import domain.model.Person;
 import domain.model.ShopService;
 
@@ -19,12 +20,12 @@ public class SortHandler extends RequestHandler {
     @Override
     String handle(HttpServletRequest request, HttpServletResponse response) {
         String sortOn = request.getParameter("sort");
-        List<Person> persons = getShopService().getPersonDb().getAll();
-        sortList(sortOn, persons);
+        List<Book> books = getShopService().getProducts();
+        sortList(sortOn, books);
         Cookie cookie = new Cookie("sort", sortOn);
         response.addCookie(cookie);
         request.setAttribute("sort", sortOn);
-        request.setAttribute("persons", persons);
-        return "personoverview.jsp";
+        request.setAttribute("producten", books);
+        return "productOverview.jsp";
     }
 }

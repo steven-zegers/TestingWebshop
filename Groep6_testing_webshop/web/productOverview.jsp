@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="Controller">Home</a></li>
                 <li id="actual"><a href="Controller?action=ProductOverview">Books</a></li>
-                <li><a href="Controller?action=ShoppingCart">Shopping cart</a></li>
+                <li><a href="Controller?action=ShowCart">Shopping cart</a></li>
                 <li><a href="Controller?action=SignUp">Sign up</a></li>
             </ul>
         </nav>
@@ -26,19 +26,28 @@
         <p><a href="Controller?action=ShowCart">Show Cart</a></p>
     </header>
     <main>
+        <form action="Controller?action=Sort" method="post" novalidate="novalidate">
+            <label for="sort">Sort by:</label>
+            <select name="sort" id="sort">
+                <option value="title"  <c:if test="${sort=='title'}">selected</c:if>>Title</option>
+                <option value="price"  <c:if test="${sort=='price'}">selected</c:if>>Price</option>
+                <option value="fname" <c:if test="${sort=='fname'}">selected</c:if>>First Name of Author</option>
+                <option value="lname" <c:if test="${sort=='lname'}">selected</c:if>>Last Name of Author</option>
+            </select>
+            <input type="submit" name="submit" value="Submit"/>
+        </form>
     <table>
-
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Title</th>
+            <th>Author</th>
             <th>Price</th>
         </tr>
         <c:forEach var="product" items="${producten}">
             <tr>
-                <td>${product.name}</td>
-                <td>${product.description}</td>
+                <td>${product.title}</td>
+                <td>${product.author}</td>
                 <td>${product.price}</td>
-                <form action="Controller?action=AddToShoppingCart&id=${product.productId}" method="post">
+                <form action="Controller?action=AddToShoppingCart&id=${product.title}" method="post">
                     <td><input type="number" value="1" name="quantity"></td>
                     <td><input type="submit" value="Add to cart"></td>
                 </form>

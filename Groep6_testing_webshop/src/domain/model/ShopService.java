@@ -49,20 +49,25 @@ public class ShopService {
     public ProductDb getProductDb() {
         return productDb;
     }
-    public Product getProduct(int productId) {
-        return getProductDb().get(productId);
+
+    public Book getProduct(String title) {
+        return getProductDb().get(title);
     }
-    public List<Product> getProducts() {
+
+    public List<Book> getProducts() {
         return getProductDb().getAll();
     }
-    public void addProduct(Product product) {
-        getProductDb().add(product);
+
+    public void addProduct(Book book) {
+        getProductDb().add(book);
     }
-    public void deleteProduct(int id) {
-        getProductDb().delete(id);
+
+    public void deleteProduct(String title) {
+        getProductDb().delete(title);
     }
-    public void updateProduct(Product product) {
-        getProductDb().update(product);
+
+    public void updateProduct(Book book) {
+        getProductDb().update(book);
     }
 
     public Person getUserIfAuthenticated(String userid, String password) {

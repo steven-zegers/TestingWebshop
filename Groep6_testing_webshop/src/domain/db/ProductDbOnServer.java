@@ -1,6 +1,6 @@
 package domain.db;
 
-import domain.model.Person;
+import domain.model.Book;
 import domain.model.Product;
 
 import java.sql.*;
@@ -24,21 +24,16 @@ public class ProductDbOnServer implements ProductDb {
     }
 
     @Override
-    public Product get(int id){
-        if (id < 0) {
-            throw new DbException("Incorrect product id");
-        }
+    public Book get(String title){
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("SELECT * FROM product WHERE productid = ?");
-            statement.setInt(1, id);
+            statement = connection.prepareStatement("SELECT * FROM book WHERE title = ?");
+            statement.setString(1, title);
             ResultSet result = statement.executeQuery();
             result.next();
-            int productID = result.getInt("productid");
-            String name = result.getString("name");
-            String description = result.getString("description");
+            String bookTitle = result.getString("title");
+            String author = result.getString("author");
             Double price = result.getDouble("price");
-            Product p = new Product(productID, name, description, price);
-            return p;
+            return new Book(bookTitle, author, price);
         } catch (SQLException e) {
             throw new DbException("Couldn't find this product " + e.getMessage());
         } finally {
@@ -51,19 +46,18 @@ public class ProductDbOnServer implements ProductDb {
     }
 
     @Override
-    public List<Product> getAll(){
+    public List<Book> getAll(){
 
-        ArrayList<Product> products = new ArrayList<>();
+        ArrayList<Book> products = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("SELECT * FROM product");
+            statement = connection.prepareStatement("SELECT * FROM book");
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                int productID = result.getInt("productid");
-                String name = result.getString("name");
-                String description = result.getString("description");
+                String bookTitle = result.getString("title");
+                String author = result.getString("author");
                 Double price = result.getDouble("price");
-                Product p = new Product(productID, name, description, price);
-                products.add(p);
+                Book book = new Book(bookTitle, author, price);
+                products.add(book);
             }
             return products;
         } catch(SQLException e) {
@@ -78,23 +72,20 @@ public class ProductDbOnServer implements ProductDb {
     }
 
     @Override
-    public void add(Product product){
-        if(product == null){
+    public void add(Book book){
+        if(book == null){
             throw new DbException("No product given");
         }
-        int productId = product.getProductId();
-        String naam = product.getName();
-        String description = product.getDescription();
-        double price = product.getPrice();
+        String title = book.getTitle();
+        String author = book.getAuthor();
+        double price = book.getPrice();
 
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            System.out.println(productId);
-            statement = connection.prepareStatement("INSERT INTO product (productid,name,description,price) VALUES (?,?,?,?)");
-            statement.setInt(1, productId);
-            statement.setString(2, naam);
-            statement.setString(3, description);
-            statement.setDouble(4, price);
-
+            System.out.println(title);
+            statement = connection.prepareStatement("INSERT INTO book (title,author,price) VALUES (?,?,?)");
+            statement.setString(1, title);
+            statement.setString(2, author);
+            statement.setDouble(3, price);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -108,20 +99,17 @@ public class ProductDbOnServer implements ProductDb {
     }
 
     @Override
-    public void update(Product product){
-        int productid = product.getProductId();
-        delete(productid);
-        add(product);
+    public void update(Book book){
+        String title = book.getTitle();
+        delete(title);
+        add(book);
     }
 
     @Override
-    public void delete(int id){
-        if(id < 0){
-            throw new DbException("No valid id given");
-        }
+    public void delete(String title){
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("DELETE from product where productid = ?");
-            statement.setInt(1, id);
+            statement = connection.prepareStatement("DELETE from book where title = ?");
+            statement.setString(1, title);
             statement.execute();
         } catch (SQLException e) {
             throw new DbException("This product isnt in the database");
@@ -137,7 +125,7 @@ public class ProductDbOnServer implements ProductDb {
     @Override
     public int getNumbeOfProducts() {
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("COUNT(*) as totaal FROM product");
+            statement = connection.prepareStatement("COUNT(*) as totaal FROM book");
             ResultSet result = statement.executeQuery();
             return result.getInt("totaal");
         } catch (SQLException e) {

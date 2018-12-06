@@ -1,5 +1,6 @@
 package ui.controller;
 
+import domain.model.Book;
 import domain.model.Person;
 import domain.model.ShopService;
 
@@ -29,13 +30,19 @@ public abstract class RequestHandler {
         this.shopService = shopService;
     }
 
-    public void sortList(String param, List<Person> persons) {
+    public void sortList(String param, List<Book> books) {
         switch(param) {
+            case "title":
+                Collections.sort(books, new BookTitleComparator());
+                break;
+            case "price":
+                Collections.sort(books, new BookPriceComparator());
+                break;
             case "fname":
-                Collections.sort(persons, new PersonFirstNameComparator());
+                Collections.sort(books, new PersonFirstNameComparator());
                 break;
             case "lname":
-                Collections.sort(persons, new PersonLastNameComparator());
+                Collections.sort(books, new PersonLastNameComparator());
                 break;
         }
     }
