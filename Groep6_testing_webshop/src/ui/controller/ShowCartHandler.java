@@ -33,9 +33,7 @@ public class ShowCartHandler extends RequestHandler {
             Collection<CartItem> producten = cart.getItems();
             request.setAttribute("shopCart", producten);
 
-            for(CartItem product : producten) {
-                total += product.getPrice();
-            }
+            total = cart.getTotalPrice();
         }
         session.setAttribute("total", total);
         return "showCart.jsp";

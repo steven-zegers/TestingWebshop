@@ -1,0 +1,91 @@
+** gegeven: 
+	een ingelogde klant met een winkelwagentje zonder producten
+
+** als:
+	ik een boek toevoeg aan het winkelwagentje
+
+** dan:
+	word dit boek toegevoegd aan het winkelwagentje en krijg ik hier een melding van
+_______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje zonder producten
+
+** als:
+	ik mijn winkelwagentje wil zien
+
+** dan:
+	krijg ik een leeg winkelwagentje te zien
+_______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje met producten
+
+** als:
+	ik in de navigatie naar het winkelwagentje ga
+
+** dan:
+	word mijn winkelwagentje getoont met alle geselecteerde items
+______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje met producten
+
+** als: 
+	ik een item uit het winkelwagentje verwijder
+
+** dan:
+	word het wagentje getoont zonder dit item
+_______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje met producten
+
+** als: 
+	ik het aantal van een product in het winkelwagentje aanpas
+
+** dan:
+	word deze aanpassing uitgevoerd en is het niewue aantal te zien in het winkelwagentje
+_______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje met producten
+
+** als: 
+	ik het aantal van een product in het winkelwagentje aanpas naar een negatieve waarde
+
+** dan:
+	word deze aanpassing niet uitgevoerd en krijg ik een foutmelding 
+_______________________________________________________________________
+
+** gegeven: 
+	een ingelogde klant met een winkelwagentje met producten
+
+** als:
+	ik mijn winkelwagentje volledig wil leegmaken
+
+** dan:
+	krijg ik een leeg winkelwagentje te zien
+________________________________________________________________________
+
+** gegeven: 
+	een niet ingelogde klant
+
+** als:
+	ik een winkelwagentje wil zien
+
+** dan:
+	krijg ik eeen melding dat ik moet inloggen
+	
+________________________________________________________________________
+
+** gegeven: 
+	een niet ingelogde klant
+
+** als:
+	ik producten wil toevoegen aan een winkelwagentje
+
+** dan:
+	krijg ik eeen melding dat ik moet inloggen
+	
+________________________________________________________________________
