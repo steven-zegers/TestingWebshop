@@ -12,13 +12,22 @@ public class Person {
 	private String firstName;
 	private String lastName;
 	private ShoppingCart shoppingCart;
+	private String userid;
+	private String streetName;
+	private int streetNumber;
+	private String city;
+
 	public Person() {
 
 	}
-	public Person(String password, String firstName, String lastName) {
+	public Person(String userId, String password, String firstName, String lastName, String streetName, int streetNumber, String city) {
+		setUserid(userId);
 		setPassword(password);
 		setFirstName(firstName);
 		setLastName(lastName);
+		setStreetName(streetName);
+		setStreetNumber(streetNumber);
+		setCity(city);
 	}
 
 	public void setHashedPassword(String password) {
@@ -97,5 +106,40 @@ public class Person {
 	@Override
 	public String toString(){
 		return getFirstName() + " " + getLastName();
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userId) {
+		this.userid = userId;
+	}
+
+	public String getStreetName() {
+		return streetName;
+	}
+
+	public void setStreetName(String streetName) {
+		this.streetName = streetName;
+	}
+
+	public int getStreetNumber() {
+		return streetNumber;
+	}
+
+	public void setStreetNumber(int streetNumber) {
+		if (streetNumber <= 0) {
+			throw  new IllegalArgumentException("Your street number cannot be smaller or equal than 0.");
+		}
+		this.streetNumber = streetNumber;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

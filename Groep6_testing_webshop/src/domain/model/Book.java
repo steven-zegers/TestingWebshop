@@ -6,10 +6,12 @@ public class Book {
     private String author;
     private String authorFirstName;
     private String authorLastName;
+    private double price;
 
-    public Book(String title, String author) {
+    public Book(String title, String author, double price) {
         setTitle(title);
         setAuthor(author);
+        setPrice(price);
     }
 
     public String getTitle() {
@@ -44,5 +46,16 @@ public class Book {
 
     public String getAuthorLastName() {
         return authorLastName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException("Your price should be a positive integer");
+        }
+        this.price = price;
     }
 }

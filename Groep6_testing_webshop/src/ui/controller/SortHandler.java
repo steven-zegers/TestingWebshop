@@ -21,17 +21,6 @@ public class SortHandler extends RequestHandler {
         String sortOn = request.getParameter("sort");
         List<Person> persons = getShopService().getPersonDb().getAll();
         sortList(sortOn, persons);
-        /*switch(sortOn) {
-            case "email":
-                Collections.sort(persons, new PersonEmailComparator());
-                break;
-            case "fname":
-                Collections.sort(persons, new PersonFirstNameComparator());
-                break;
-            case "lname":
-                Collections.sort(persons, new PersonLastNameComparator());
-                break;
-        }*/
         Cookie cookie = new Cookie("sort", sortOn);
         response.addCookie(cookie);
         request.setAttribute("sort", sortOn);

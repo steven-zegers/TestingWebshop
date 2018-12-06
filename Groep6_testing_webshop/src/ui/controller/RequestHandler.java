@@ -31,9 +31,6 @@ public abstract class RequestHandler {
 
     public void sortList(String param, List<Person> persons) {
         switch(param) {
-            case "email":
-                Collections.sort(persons, new PersonEmailComparator());
-                break;
             case "fname":
                 Collections.sort(persons, new PersonFirstNameComparator());
                 break;

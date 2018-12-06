@@ -15,10 +15,10 @@
 <h1><span>Web shop</span></h1>
 <nav>
 <ul>
-<li><a href="Controller">Home</a></li>
-<li><a href="Controller?action=PersonOverview">Overview</a></li>
-<li id="actual"><a href="Controller?action=SignUp">Sign up</a></li>
-    <li><a href="Controller?action=ProductOverview">Product overview</a></li>
+    <li><a href="Controller">Home</a></li>
+    <li><a href="Controller?action=ProductOverview">Books</a></li>
+    <li><a href="Controller?action=ShoppingCart">Shopping cart</a></li>
+    <li id="actual"><a href="Controller?action=SignUp">Sign up</a></li>
 </ul>
 </nav>
 <h2>
@@ -39,23 +39,25 @@ Sign Up
 
     <form method="post" action="Controller?action=Submit" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
+        <p><label for="userId">Login name</label><input type="text" id="userId" name="userId"
+        required value="<c:out value='${param.userId}'/>"></p>
         <p><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName"
          required value="<c:out value ='${param.firstName}'/>"> </p>
         <p><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName"
          required value="${param.lastName}"> </p>
         <p>
-            <label for="streetName">Street Name</label><input type="text" id="streetName" name="lastName"
+            <label for="streetName">Street Name</label><input type="text" id="streetName" name="streetName"
                                                               required value="<c:out value ='${param.streetName}'/>">
         </p>
         <p>
-            <label for="streetNumber">Street Number</label><input type="text" id="streetNumber" name="streetNumber"
+            <label for="streetNumber">Street Number</label><input type="number" id="streetNumber" name="streetNumber"
                                                                                       required value="<c:out value ='${param.streetNumber}'/>">
         </p>
         <p>
             <label for="city">City</label><input type="text" id="city" name="city" required value="<c:out value ='${param.city}'/>">
         </p>
         <p><label for="password">Password</label><input type="password" id="password"  name="password"
-         required value="${param.password}"> </p>
+         required value="<c:out value='${param.password}'/>"> </p>
         <p><input type="submit" id="signUp" value="Sign Up"></p>
     </form>
 </main>

@@ -11,8 +11,6 @@ public class PersonDbInMemory implements PersonDb {
 	private Map<String, Person> persons = new HashMap<>();
 	
 	public PersonDbInMemory () {
-		Person administrator = new Person("admin", "admin@ucll.be", "t", "Ad", "Ministrator");
-		add(administrator);
 	}
 	
 	@Override

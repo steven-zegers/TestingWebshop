@@ -37,13 +37,17 @@ public class PersonDbOnServer implements PersonDb {
             String voornaam = result.getString("firstname");
             String achternaam = result.getString("lastname");
             String userid = result.getString("userid");
-            String email = result.getString("email");
+            String streetName = result.getString("streetname");
+            int streetNumber = result.getInt("streetnumber");
+            String city = result.getString("city");
             String password = result.getString("password");
             Person p = new Person();
             p.setFirstName(voornaam);
             p.setLastName(achternaam);
             p.setUserid(userid);
-            p.setEmail(email);
+            p.setStreetName(streetName);
+            p.setStreetNumber(streetNumber);
+            p.setCity(city);
             p.setHashedPassword(password);
             return p;
         } catch (SQLException e) {
@@ -60,6 +64,7 @@ public class PersonDbOnServer implements PersonDb {
     public void changePassword() {
 
     }
+
     @Override
     public List<Person> getAll() {
         ArrayList<Person> listPersons = new ArrayList<>();
@@ -70,13 +75,17 @@ public class PersonDbOnServer implements PersonDb {
                 String voornaam = result.getString("firstname");
                 String achternaam = result.getString("lastname");
                 String userid = result.getString("userid");
-                String email = result.getString("email");
+                String streetName = result.getString("streetname");
+                int streetNumber = result.getInt("streetnumber");
+                String city = result.getString("city");
                 String password = result.getString("password");
                 Person p = new Person();
                 p.setFirstName(voornaam);
                 p.setLastName(achternaam);
                 p.setUserid(userid);
-                p.setEmail(email);
+                p.setStreetName(streetName);
+                p.setStreetNumber(streetNumber);
+                p.setCity(city);
                 p.setHashedPassword(password);
                 listPersons.add(p);
             }
@@ -101,14 +110,18 @@ public class PersonDbOnServer implements PersonDb {
         String password = person.getPassword();
         String firstName = person.getFirstName();
         String lastName = person.getLastName();
-        String email = person.getEmail();
+        String streetName = person.getStreetName();
+        int streetNumber = person.getStreetNumber();
+        String city = person.getCity();
         try (Connection connection = DriverManager.getConnection(url, properties)) {
-            statement = connection.prepareStatement("INSERT INTO person (firstname,lastname,userid,email,password) VALUES (?,?,?,?,?)");
+            statement = connection.prepareStatement("INSERT INTO person (firstname,lastname,userid,streetname,streetnumber,city,password) VALUES (?,?,?,?,?,?,?)");
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, userid);
-            statement.setString(4, email);
-            statement.setString(5, password);
+            statement.setString(4, streetName);
+            statement.setInt(5, streetNumber);
+            statement.setString(6, city);
+            statement.setString(7, password);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new DbException(e.getMessage());

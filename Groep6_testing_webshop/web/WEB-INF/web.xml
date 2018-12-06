@@ -19,7 +19,7 @@
     </error-page>
     <context-param>
         <param-name>url</param-name>
-        <param-value>jdbc:postgresql://databanken.ucll.be:51819/2TX35?currentSchema=r0593798</param-value>
+        <param-value>jdbc:postgresql://databanken.ucll.be:51819/2TX35?currentSchema=testing_groep7</param-value>
     </context-param>
     <context-param>
         <param-name>user</param-name>

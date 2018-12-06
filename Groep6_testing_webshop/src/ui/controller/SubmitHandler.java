@@ -21,18 +21,20 @@ public class SubmitHandler extends RequestHandler {
     String handle(HttpServletRequest request, HttpServletResponse response) {
         Person p = new Person();
         ArrayList<String> errors = new ArrayList<>();
-        String userid = request.getParameter("userid");
+        String userId = request.getParameter("userId");
         String firstname = request.getParameter("firstName");
         String lastname = request.getParameter("lastName");
-        String mail = request.getParameter("email");
         String password = request.getParameter("password");
+        String streetName = request.getParameter("streetName");
+        int streetNumber = Integer.parseInt(request.getParameter("streetNumber"));
+        String city = request.getParameter("city");
+
         try {
-            p.setUserid(userid);
-            request.setAttribute("userid", userid);
-        } catch (IllegalArgumentException e){
+            p.setUserid(userId);
+            request.setAttribute("userId", userId);
+        } catch (IllegalArgumentException e) {
             errors.add(e.getMessage());
         }
-
         try {
             p.setFirstName(firstname);
             request.setAttribute("firstName", firstname);
@@ -55,12 +57,26 @@ public class SubmitHandler extends RequestHandler {
         }
 
         try {
-            p.setEmail(mail);
-            request.setAttribute("email", mail);
-
+            p.setStreetName(streetName);
+            request.setAttribute("streetName", streetName);
         } catch(IllegalArgumentException e) {
             errors.add(e.getMessage());
         }
+
+        try {
+            p.setStreetNumber(streetNumber);
+            request.setAttribute("streetNumber", streetNumber);
+        } catch(IllegalArgumentException e) {
+            errors.add(e.getMessage());
+        }
+
+        try {
+            p.setCity(city);
+            request.setAttribute("city", city);
+        } catch(IllegalArgumentException e) {
+            errors.add(e.getMessage());
+        }
+
         if (errors.size() == 0) {
             try {
                 getShopService().getPersonDb().add(p);

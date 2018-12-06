@@ -28,17 +28,6 @@ public class PersonOverviewHandler extends RequestHandler {
                     String sortMethod = cookie.getValue();
                     request.setAttribute("sort", sortMethod);
                     sortList(sortMethod, personList);
-                    /*switch(sortMethod) {
-                        case "email":
-                            Collections.sort(personList, new PersonEmailComparator());
-                            break;
-                        case "fname":
-                            Collections.sort(personList, new PersonFirstNameComparator());
-                            break;
-                        case "lname":
-                            Collections.sort(personList, new PersonLastNameComparator());
-                            break;
-                    }*/
                 }
             }
         }

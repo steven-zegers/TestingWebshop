@@ -17,9 +17,9 @@
         <nav>
             <ul>
                 <li><a href="Controller">Home</a></li>
-                <li><a href="Controller?action=PersonOverview">Overview</a></li>
+                <li><a href="Controller?action=ProductOverview">Books</a></li>
+                <li><a href="Controller?action=ShoppingCart">Shopping cart</a></li>
                 <li><a href="Controller?action=SignUp">Sign up</a></li>
-                <li><a href="Controller?action=ProductOverview">Product overview</a></li>
             </ul>
         </nav>
         <h2>Payment Confirmed</h2>
