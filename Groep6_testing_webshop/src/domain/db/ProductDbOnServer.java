@@ -13,7 +13,6 @@ public class ProductDbOnServer implements ProductDb {
     private String url;
     private PreparedStatement statement;
     public ProductDbOnServer (Properties properties) {
-
         try {
             Class.forName("org.postgresql.Driver");
             this.properties = properties;

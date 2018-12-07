@@ -55,8 +55,8 @@
             <select name="sort" id="sort">
                 <option value="title"  <c:if test="${sort=='title'}">selected</c:if>>Title</option>
                 <option value="price"  <c:if test="${sort=='price'}">selected</c:if>>Price</option>
-                <option value="fname" <c:if test="${sort=='fname'}">selected</c:if>>First Name of Author</option>
-                <option value="lname" <c:if test="${sort=='lname'}">selected</c:if>>Last Name of Author</option>
+                <option value="fname" <c:if test="${sort=='fname'}">selected</c:if>>First name of author</option>
+                <option value="lname" <c:if test="${sort=='lname'}">selected</c:if>>Last anme of author</option>
             </select>
             <input type="submit" name="submit" value="Submit"/>
         </form>
