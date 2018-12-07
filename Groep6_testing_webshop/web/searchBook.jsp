@@ -22,7 +22,7 @@
             </ul>
         </nav>
         <h2>
-            Product Overview
+            Search a book
         </h2>
     </header>
     <main>
@@ -49,27 +49,35 @@
             </select>
             <input type="submit" name="submit" value="Submit"/>
         </form>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Price</th>
-            </tr>
-            <c:forEach var="product" items="${producten}">
-                <tr>
-                    <td>${product.title}</td>
-                    <td>${product.author}</td>
-                    <td>${product.price}</td>
-                    <form action="Controller?action=AddToShoppingCart&id=${product.title}" method="post">
-                        <td><input type="number" value="1" name="quantity"></td>
-                        <td><input type="submit" value="Add to cart"></td>
-                    </form>
-                </tr>
-            </c:forEach>
+        <c:if test="${producten != null}">
+            <c:choose>
+                <c:when test="${empty producten}">
+                    <p>We are very sorry but we did not find any books in our great selection that match your keyword.</p>
+                </c:when>
+                <c:otherwise>
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                        </tr>
+                        <c:forEach var="product" items="${producten}">
+                            <tr>
+                                <td>${product.title}</td>
+                                <td>${product.author}</td>
+                                <td>${product.price}</td>
+                                <form action="Controller?action=AddToShoppingCart&id=${product.title}" method="post">
+                                    <td><input type="number" value="1" name="quantity"></td>
+                                    <td><input type="submit" value="Add to cart"></td>
+                                </form>
+                            </tr>
+                        </c:forEach>
+                        <caption>Product Overview</caption>
+                    </table>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
 
-
-            <caption>Product Overview</caption>
-        </table>
     </main>
     <footer>
         &copy; Webontwikkeling 3, UC Leuven-Limburg

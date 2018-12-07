@@ -47,39 +47,40 @@
                 </ul>
             </div>
         </c:if>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Amount</th>
-            </tr>
-            <c:if test="${shopCart!=null}">
-                <c:if test="${not empty shopCart}">
+        <c:choose>
+            <c:when test="${not empty shopCart}">
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                    </tr>
                     <c:forEach var="cartItem" items="${shopCart}">
-                        <tr>
-                            <td>${cartItem.product.title}</td>
-                            <td>${cartItem.product.price}</td>
-                            <td>${cartItem.quantity}</td>
-                            <form action="Controller?action=ChangeQuantity&id=${cartItem.product.title}" method="post">
-                                <td><input type="number" value="1" name="quantity"></td>
-                                <td><input type="submit" value="Change quantity"></td>
-                            </form>
-                            <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.title}">Delete from cart</a></td>
-                        </tr>
+                    <tr>
+                        <td>${cartItem.product.title}</td>
+                        <td>${cartItem.product.price}</td>
+                        <td>${cartItem.quantity}</td>
+                        <form action="Controller?action=ChangeQuantity&id=${cartItem.product.title}" method="post">
+                            <td><input type="number" value="1" name="quantity"></td>
+                            <td><input type="submit" value="Change quantity"></td>
+                        </form>
+                        <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.title}">Delete from cart</a></td>
+                    </tr>
                     </c:forEach>
-                </c:if>
-            </c:if>
-            <p>The total price is: ${total}</p>
-            <caption>Product Overview</caption>
-        </table>
-        <c:if test="${shopCart!=null}">
-            <c:if test="${not empty shopCart}">
-                <form method="post" action="Controller?action=Order" novalidate="novalidate">
-                <!-- novalidate in order to be able to run tests correctly -->
-                    <p><input type="submit" id="Order" value="Place order"></p>
-                </form>
-            </c:if>
-        </c:if>
+                    <p>The total price is: ${total}</p>
+                    <caption>Product Overview</caption>
+                </table>
+                    <form method="post" action="Controller?action=Order" novalidate="novalidate">
+                        <!-- novalidate in order to be able to run tests correctly -->
+                        <p><input type="submit" id="Order" value="Place order"></p>
+                    </form>
+            </c:when>
+            <c:otherwise>
+                <h3>You currently do not have any items in your shopping cart.</h3>
+                <p>If you would like to check out our selection of books click <a href="Controller?action=ProductOverview">here</a></p>
+                <p>If you have a certain book in mind, you can check if we currently have this book for sale by clicking <a href="Controller?action=SearchBook">here</a></p>
+            </c:otherwise>
+        </c:choose>
     </main>
     <footer>
         &copy; Webontwikkeling 3, UC Leuven-Limburg
