@@ -15,6 +15,7 @@
             <ul>
                 <li><a href="Controller">Home</a></li>
                 <li><a href="Controller?action=ProductOverview">Books</a></li>
+                <li><a href="Controller?action=SearchBook">Search a book</a></li>
                 <li id="actual"><a href="Controller?action=ShowCart">Shopping cart</a></li>
                 <li><a href="Controller?action=SignUp">Sign up</a></li>
             </ul>
@@ -24,6 +25,18 @@
         </h2>
     </header>
     <main>
+
+        <c:if test="${notifications != null}">
+            <div class="notification">
+                <ul>
+                    <c:forEach items="${notifications}" var="notification">
+                        <li>${notification}</li>
+                    </c:forEach>
+
+                </ul>
+            </div>
+        </c:if>
+
         <c:if test="${errors != null}">
             <div class="alert-danger">
                 <ul>

@@ -58,7 +58,7 @@ public class AddToShoppingCartHandler extends RequestHandler {
         cart.add(cartItem);
         ArrayList<String> message = new ArrayList<>();
         message.add("Product added to shoppingcart!");
-        request.setAttribute("errors", message);
+        request.setAttribute("notifications", message);
         request.setAttribute("producten", getShopService().getProducts());
         return "productOverview.jsp";
     }

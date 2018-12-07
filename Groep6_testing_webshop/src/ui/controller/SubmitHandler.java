@@ -28,7 +28,12 @@ public class SubmitHandler extends RequestHandler {
         String lastname = request.getParameter("lastName");
         String password = request.getParameter("password");
         String streetName = request.getParameter("streetName");
-        int streetNumber = Integer.parseInt(request.getParameter("streetNumber"));
+        int streetNumber = -1;
+        try {
+            streetNumber = Integer.parseInt(request.getParameter("streetNumber"));
+        } catch(NumberFormatException e) {
+            errors.add("Please input a valid street number!");
+        }
         String city = request.getParameter("city");
 
         try {

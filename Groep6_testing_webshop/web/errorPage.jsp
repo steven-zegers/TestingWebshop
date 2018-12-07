@@ -19,6 +19,7 @@
             <ul>
                 <li><a href="Controller">Home</a></li>
                 <li><a href="Controller?action=ProductOverview">Books</a></li>
+                <li><a href="Controller?action=SearchBook">Search a book</a></li>
                 <li><a href="Controller?action=ShowCart">Shopping cart</a></li>
                 <li><a href="Controller?action=SignUp">Sign up</a></li>
             </ul>

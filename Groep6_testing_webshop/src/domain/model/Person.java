@@ -57,16 +57,14 @@ public class Person {
 
 	public boolean isCorrectPassword(String password) {
 		if(password.isEmpty()){
-			throw new IllegalArgumentException("No password given");
+			throw new IllegalArgumentException("Please put in your password.");
 		}
-		System.out.println("Eerste passwoord: " + getPassword());
-		System.out.println("Tweede passwoord: " + hashPassword(password));
 		return getPassword().equals(hashPassword(password));
 	}
 
 	public void setPassword(String password) {
 		if(password.isEmpty()){
-			throw new IllegalArgumentException("No password given");
+			throw new IllegalArgumentException("Please put in your password.");
 		}
 		this.password = hashPassword(password);
 	}
@@ -77,7 +75,7 @@ public class Person {
 
 	public void setFirstName(String firstName) {
 		if(firstName.isEmpty()){
-			throw new IllegalArgumentException("No firstname given");
+			throw new IllegalArgumentException("Please fill in your first name!");
 		}
 		this.firstName = firstName;
 	}
@@ -90,7 +88,7 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		if(lastName.isEmpty()){
-			throw new IllegalArgumentException("No last name given");
+			throw new IllegalArgumentException("Please fill in your last name!");
 		}
 		this.lastName = lastName;
 	}
@@ -121,6 +119,7 @@ public class Person {
 	}
 
 	public void setStreetName(String streetName) {
+		if(streetName.isEmpty()) throw new IllegalArgumentException("Please fill in a street name!");
 		this.streetName = streetName;
 	}
 
@@ -130,7 +129,7 @@ public class Person {
 
 	public void setStreetNumber(int streetNumber) {
 		if (streetNumber <= 0) {
-			throw  new IllegalArgumentException("Your street number cannot be smaller or equal than 0.");
+			throw  new IllegalArgumentException("Your street number should be greater than 0.");
 		}
 		this.streetNumber = streetNumber;
 	}
@@ -140,6 +139,7 @@ public class Person {
 	}
 
 	public void setCity(String city) {
+		if(city.isEmpty()) throw new IllegalArgumentException("Please fill in a city!");
 		this.city = city;
 	}
 }

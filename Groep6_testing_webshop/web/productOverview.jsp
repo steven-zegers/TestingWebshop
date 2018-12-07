@@ -16,6 +16,7 @@
             <ul>
                 <li><a href="Controller">Home</a></li>
                 <li id="actual"><a href="Controller?action=ProductOverview">Books</a></li>
+                <li><a href="Controller?action=SearchBook">Search a book</a></li>
                 <li><a href="Controller?action=ShowCart">Shopping cart</a></li>
                 <li><a href="Controller?action=SignUp">Sign up</a></li>
             </ul>
@@ -23,9 +24,19 @@
         <h2>
             Product Overview
         </h2>
-        <p><a href="Controller?action=ShowCart">Show Cart</a></p>
     </header>
     <main>
+
+        <c:if test="${notifications != null}">
+            <div class="notification">
+                <ul>
+                    <c:forEach items="${notifications}" var="notification">
+                        <li>${notification}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+
         <c:if test="${errors != null}">
             <div class="alert-danger">
                 <ul>
@@ -36,6 +47,8 @@
                 </ul>
             </div>
         </c:if>
+
+        <p><a href="Controller?action=ShowCart">Show Cart</a></p>
 
         <form action="Controller?action=Sort" method="post" novalidate="novalidate">
             <label for="sort">Sort by:</label>

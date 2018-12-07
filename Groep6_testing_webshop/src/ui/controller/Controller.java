@@ -86,6 +86,7 @@ public class Controller extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher(destination);
             view.forward(request, response);
         } catch(Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             throw new ServletException(e.getMessage());
         }
