@@ -45,7 +45,7 @@
             <label for="method">Search by:</label>
             <select name="method" id="method">
                 <option value="title"  <c:if test="${search=='title'}">selected</c:if>>Title</option>
-                <option value="price"  <c:if test="${search=='price'}">selected</c:if>>Price</option>
+                <option value="author"  <c:if test="${search=='author'}">selected</c:if>>Author</option>
             </select>
             <input type="submit" name="submit" value="Submit"/>
         </form>
