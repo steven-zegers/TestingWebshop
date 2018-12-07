@@ -7,8 +7,8 @@
 body {
 	font-family: arial,sans-serif;
 	font-size: 90%;
-	color: #303d11;
-	background-color: #303d11;
+	color: #8D8741;
+	background-color: #659DBD;
 }
 
 div#container {
@@ -17,13 +17,16 @@ div#container {
 	margin-top: 10px;
 }
 
+body main {
+	color: black;
+}
 footer {
-	background-color: #b99703;
+	background-color: #DAAD86;
 }
 
 nav ul {
 	list-style: none;
-	background-color: #b99703;
+	background-color: #BC986A;
 	box-sizing: border-box;
 	margin-bottom: 1em;
 }
@@ -38,13 +41,13 @@ nav ul li {
 }
 
 nav ul li a{
-	color: #303d11;
+	color: #FBEEC1;
 	text-decoration: none;
 	display: block;
 }
 
 nav ul li#actual {
-	background-color: #f3dc04;
+	background-color: #303d11;
 }
 
 
@@ -53,11 +56,12 @@ h2, main, footer {
 }
 
 h1 {
-	background-image: url("../images/bookshelf.jpg");
+	background-image: url("../images/favorite-books-header.jpg");
 	height: 100px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	position: relative;
+	color: whitesmoke;
 }
 
 h1 span {
@@ -137,6 +141,8 @@ div#container {
 nav ul li {
 	display: block;
 	border-bottom: 1px solid #303d11;
+	border-left: 1px solid #303d11;
+	border-right: 1px solid #303d11;
 }
 
 nav ul li:first-child {
@@ -155,12 +161,12 @@ input {
 
 
 /* desktop */
-@media screen and (min-width: 850px) {
+@media screen and (min-width: 950px) {
 	div#container {
 	max-width: 1000px;
 	}
 	h1 {
-	background-image: url("../images/bookshelf.jpg");
+	background-image: url("../images/favorite-books-header.jpg");
 	}
 	
 	nav ul {
@@ -179,9 +185,9 @@ input {
 	margin: auto;
 	border: none;
 	}
-	nav ul li:first-child {
+	/*nav ul li:first-child {
 	border: none;
-	}
+	}*/
 	nav ul li a {
 	text-align: center;
 	}

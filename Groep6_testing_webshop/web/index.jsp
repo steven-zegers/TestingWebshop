@@ -13,7 +13,7 @@
 <div id="container">
 	<header>
 		<h1>
-			<span>Web shop</span>
+			<span>Prato book shop</span>
 		</h1>
 		<nav>
 			<ul>
@@ -36,7 +36,7 @@
 			</ul>
 		</div>
 	</c:if>
-		<p>Welcome to our web shop where you can buy your favorite things!</p>
+		<p>Welcome to our web shop where you can buy your favorite books!</p>
 		<c:choose>
 			<c:when test="${login=='yes'}">
 				<h3>Welcome, ${person.firstName}</h3>

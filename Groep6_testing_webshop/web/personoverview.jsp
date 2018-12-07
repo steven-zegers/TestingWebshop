@@ -11,7 +11,7 @@
 <body>
 <div id="container">
 <header>
-<h1><span>Web shop</span></h1>
+<h1><span>Prato book shop</span></h1>
     <nav>
         <ul>
             <li><a href="Controller">Home</a></li>

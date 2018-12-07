@@ -12,7 +12,7 @@
 <div id="container">
     <header>
         <h1>
-            <span>Web shop</span>
+            <span>Prato book shop</span>
         </h1>
         <nav>
             <ul>
