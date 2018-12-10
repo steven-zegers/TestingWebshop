@@ -4,7 +4,6 @@ import domain.model.DomainException;
 import domain.model.Product;
 import domain.model.ShopService;
 import domain.model.ShoppingCart;
-import org.eclipse.jetty.http.HttpParser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
