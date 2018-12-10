@@ -12,8 +12,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DeleteFromCartHandler extends RequestHandler {
-
-
     public DeleteFromCartHandler() {
 
     }
