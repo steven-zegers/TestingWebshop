@@ -70,10 +70,18 @@
                     <p>The total price is: ${total}</p>
                     <caption>Product Overview</caption>
                 </table>
-                    <form method="post" action="Controller?action=Order" novalidate="novalidate">
-                        <!-- novalidate in order to be able to run tests correctly -->
-                        <p><input type="submit" id="Order" value="Place order"></p>
-                    </form>
+                <c:choose>
+                    <c:when test="${sessionScope.person != null}">
+                        <form method="post" action="Controller?action=Order" novalidate="novalidate">
+                            <p><input type="submit" id="Order" value="Place order"></p>
+                        </form>
+                    </c:when>
+                    <c:otherwise>
+                        <h3>If you would like to order these items please sign in <a href="Controller?action=Home">here</a> if you already have an account.</h3>
+                        <h3>If you do not yet have an account you can <a href="Controller?action=SignUp">sign up</a>!</h3>
+                    </c:otherwise>
+                </c:choose>
+
             </c:when>
             <c:otherwise>
                 <h3>You currently do not have any items in your shopping cart.</h3>

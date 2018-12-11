@@ -2,6 +2,7 @@ package ui.controller;
 
 import domain.model.Person;
 import domain.model.ShopService;
+import domain.model.ShoppingCart;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,9 @@ public class LoginHandler extends RequestHandler {
                 request.setAttribute("errors", errors);
                 return "index.jsp";
             } else {
+                if (session.getAttribute("shopCart") != null) {
+                    p.setShoppingCart((ShoppingCart) session.getAttribute("shopCart"));
+                }
                 session.setAttribute("person", p);
                 session.setAttribute("login", "yes");
                 return "index.jsp";

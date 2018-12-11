@@ -40,12 +40,21 @@ Sign Up
 
     <form method="post" action="Controller?action=Submit" novalidate="novalidate">
     	<!-- novalidate in order to be able to run tests correctly -->
-        <p><label for="userId">Login name:</label><input type="text" id="userId" name="userId"
-        required value="<c:out value='${param.userId}'/>"></p>
-        <p><label for="firstName">First Name:</label><input type="text" id="firstName" name="firstName"
-         required value="<c:out value ='${param.firstName}'/>"> </p>
-        <p><label for="lastName">Last Name:</label><input type="text" id="lastName" name="lastName"
-         required value="${param.lastName}"> </p>
+        <p>
+            <label for="userId">Login name:</label><input type="text" id="userId" name="userId"
+            required value="<c:out value='${param.userId}'/>">
+        </p>
+        <p>
+            <label for="password">Password:</label><input type="password" id="password"  name="password"
+                                                         required value="<c:out value='${param.password}'/>">
+        </p>
+        <p>
+            <label for="firstName">First Name:</label><input type="text" id="firstName" name="firstName"
+            required value="<c:out value ='${param.firstName}'/>"> </p>
+        <p>
+            <label for="lastName">Last Name:</label><input type="text" id="lastName" name="lastName"
+            required value="${param.lastName}">
+        </p>
         <p>
             <label for="streetName">Street Name:</label><input type="text" id="streetName" name="streetName"
                                                               required value="<c:out value ='${param.streetName}'/>">
@@ -57,8 +66,6 @@ Sign Up
         <p>
             <label for="city">City:</label><input type="text" id="city" name="city" required value="<c:out value ='${param.city}'/>">
         </p>
-        <p><label for="password">Password:</label><input type="password" id="password"  name="password"
-         required value="<c:out value='${param.password}'/>"> </p>
         <p><input type="submit" id="signUp" value="Sign Up"></p>
     </form>
 </main>
