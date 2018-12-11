@@ -77,8 +77,10 @@
                         </form>
                     </c:when>
                     <c:otherwise>
-                        <h3>If you would like to order these items please sign in <a href="Controller?action=Home">here</a> if you already have an account.</h3>
-                        <h3>If you do not yet have an account you can <a href="Controller?action=SignUp">sign up</a>!</h3>
+                        <div class="alert-danger">
+                            <h3>If you would like to order these items please sign in <a href="Controller?action=Home">here</a> if you already have an account.</h3>
+                            <h3>If you do not yet have an account you can <a href="Controller?action=SignUp">sign up</a>!</h3>
+                        </div>
                     </c:otherwise>
                 </c:choose>
 
