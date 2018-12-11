@@ -37,6 +37,7 @@
 		</div>
 	</c:if>
 		<p>Welcome to our web shop where you can buy your favorite books!</p>
+		<br>
 		<c:choose>
 			<c:when test="${login=='yes'}">
 				<h3>Welcome, ${person.firstName}</h3>
@@ -46,13 +47,14 @@
 			</c:when>
 			<c:otherwise>
 				<form method="post" action="Controller?action=Login" novalidate="novalidate">
-					<!-- novalidate in order to be able to run tests correctly -->
 					<p><label for="userid">User id</label><input type="text" id="userid" name="userid"
 																 required value="<c:out value ='${param.userId}'/>"> </p>
 					<p><label for="password">Password</label><input type="password" id="password"  name="password"
 																	required value="${param.password}"> </p>
 					<p><input type="submit" id="Login" value="Log in"></p>
+					<p>You don't have an account yet? No worries, you can easily make one on our <a href="Controller?action=SignUp">registration page</a>!</p>
 				</form>
+
 			</c:otherwise>
 		</c:choose>
 	</main>
