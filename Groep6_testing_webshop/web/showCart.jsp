@@ -26,7 +26,7 @@
     </header>
     <main>
 
-        <c:if test="${notifications != null}">
+        <c:if test="${not empty notifications}">
             <div class="notification">
                 <ul>
                     <c:forEach items="${notifications}" var="notification">
@@ -54,11 +54,12 @@
                         <th>Name</th>
                         <th>Price</th>
                         <th>Amount</th>
+                        <th>Change amount</th>
                     </tr>
                     <c:forEach var="cartItem" items="${shopCart}">
                     <tr>
                         <td>${cartItem.product.title}</td>
-                        <td>${cartItem.product.price}</td>
+                        <td>&euro;${cartItem.product.price}</td>
                         <td>${cartItem.quantity}</td>
                         <form action="Controller?action=ChangeQuantity&id=${cartItem.product.title}" method="post">
                             <td><input type="number" value="1" name="quantity"></td>
@@ -67,7 +68,8 @@
                         <td><a href="Controller?action=DeleteFromCart&id=${cartItem.product.title}">Delete from cart</a></td>
                     </tr>
                     </c:forEach>
-                    <p>The total price is: ${total}</p>
+                    <form action="Controller?action=ClearCart" method="post" novalidate="novalidate"><input type="submit" id="ClearCart" value="Clear cart"></form>
+                    <h3>The total price is: &euro;${total}</h3>
                     <caption>Product Overview</caption>
                 </table>
                 <c:choose>
@@ -77,9 +79,15 @@
                         </form>
                     </c:when>
                     <c:otherwise>
-                        <div class="alert-danger">
-                            <h3>If you would like to order these items please sign in <a href="Controller?action=Home">here</a> if you already have an account.</h3>
-                            <h3>If you do not yet have an account you can <a href="Controller?action=SignUp">sign up</a>!</h3>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="notification">
+                            <h3>You are currently not logged in!</h3>
+                            <br>
+                            <p>If you would like to order these items please sign in <a href="Controller?action=Home">here</a> if you already have an account.</p>
+                            <br>
+                            <p>If you do not yet have an account you can sign up to our webshop <a href="Controller?action=SignUp">here</a>!</p>
                         </div>
                     </c:otherwise>
                 </c:choose>
@@ -87,7 +95,9 @@
             </c:when>
             <c:otherwise>
                 <h3>You currently do not have any items in your shopping cart.</h3>
+                <br>
                 <p>If you would like to check out our selection of books click <a href="Controller?action=ProductOverview">here</a></p>
+                <br>
                 <p>If you have a certain book in mind, you can check if we currently have this book for sale by clicking <a href="Controller?action=SearchBook">here</a></p>
             </c:otherwise>
         </c:choose>
